@@ -9,14 +9,14 @@
 
 ### 2. 功能示例
 #### 2.1 验证器
-![验证器](/miniprogram/image/img.png)
+![验证器](images/img.png)
 #### 2.2 设置页
-![设置页](/miniprogram/image/img_1.png)
+![设置页](/images/img_1.png)
 
 ### 线上体验
 #### 微信
-![体验二维码](/miniprogram/image/img_2.png)
+![体验二维码](/images/img_2.png)
 #### 支付宝
-![体验二维码支付宝](/miniprogram/image/img_2.png)
+![体验二维码支付宝](/images/img_2.png)
 
 
