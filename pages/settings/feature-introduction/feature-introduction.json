@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "ant-container": "antd-mini/Container/index"
+  }
+}

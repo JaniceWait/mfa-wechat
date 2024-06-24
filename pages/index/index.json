@@ -1,0 +1,14 @@
+{
+  "usingComponents": {
+    "ant-notice": "antd-mini/NoticeBar/index",
+    "ant-container": "antd-mini/Container/index",
+    "ant-list": "antd-mini/List/index",
+    "ant-list-item": "antd-mini/List/ListItem/index",
+    "ant-icon": "antd-mini/Icon/index",
+    "ant-action-sheet": "antd-mini/ActionSheet/index",
+    "container": "antd-mini/Container/index",
+    "card":"../../components/card/card",
+    "empty": "antd-mini/Empty/index",
+    "ant-input": "antd-mini/Input/index"
+  }
+}

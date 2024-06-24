@@ -1,0 +1,50 @@
+<ant-container>
+  <view class="logo">
+    <image
+      class="image"
+      data-name="scaleToFill"
+      mode="scaleToFill"
+      src="../../images/logo.png"
+      bind:error="imageError"
+      bind:load="imageLoad"
+    />
+    <view class="text">{{copywriting.appTitle}}</view>
+  </view>
+  <view>
+    <ant-container title="">
+      <ant-list >
+        <ant-list-item image="UndoOutline" bind:tap="onSyncData" data-info="同步数据">
+          同步数据
+        </ant-list-item>
+        <ant-list-item
+          image="FillinOutline"
+          arrow="right"
+          bind:tap="showFeatureIntroduction"
+          data-info="功能介绍"
+        >
+          功能介绍
+        </ant-list-item>
+
+        <ant-list-item
+          image="InformationCircleOutline"
+          bind:tap="onClientVersion"
+          data-info="软件版本"
+        >
+          <view slot="extra">{{configs.version}}</view>
+          软件版本
+        </ant-list-item>
+
+        <ant-list-item
+          image="StarOutline"
+          arrow="right"
+          bind:tap="showAboutUs"
+          data-info="关于我们"
+        >
+          关于我们
+        </ant-list-item>
+
+
+      </ant-list>
+    </ant-container>
+  </view>
+</ant-container>

@@ -1,0 +1,46 @@
+<view>
+    <ant-notice
+    bind:tap="handleClose"
+    mode="closeable">
+    欢迎使用在线MFA验证器！
+  </ant-notice>
+  <view class="pb">
+    <view class="top-container">
+      <ant-input
+        placeholder="请输入搜索内容"
+        bind:change="onChangeSearch"
+        className="search-bar"
+        focusClassName="search-bar-focus"
+        confirm-type="search"
+        allowClear
+        bind:confirm="onConfirm">
+        <ant-icon
+      slot="prefix"
+      type="SearchOutline" />
+      </ant-input>
+      <ant-icon
+      className="iconStyle"
+      slot="suffix" bind:tap="handleOpenBasic"
+      type="AddCircleOutline" />
+    </view>
+    <view wx:if="{{cardInfos.length}}">
+      <card wx:for="{{ cardInfos }}" code="{{item.code}}" title="{{item.title}}" progress="{{item.progress}}" index = "{{index}}" bind:editremark="editRemark" bind:deleteitem="deleteItem"/>
+    </view>
+    <view wx:else>
+      <empty message="暂无数据"/>
+    </view>
+  
+
+  </view>
+
+
+<view>
+<ant-action-sheet
+  title="请选择你要进行的操作"
+  visible="{{ visible }}"
+  actions="{{ actions }}"
+  bind:action="handleAction"
+  bind:close="handleCloseBasic" />
+</view>
+
+</view>

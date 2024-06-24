@@ -1,0 +1,14 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ant-container": "antd-mini/Container/index",
+    "ant-button": "antd-mini/Button/index",
+    "am-icon": "antd-mini/Icon/index",
+    "ant-action-sheet": "antd-mini/ActionSheet/index",
+    "popover": "antd-mini/Popover/index",
+    "list": "antd-mini/List/index",
+    "list-item": "antd-mini/List/ListItem/index",
+    "ant-modal": "antd-mini/Modal/index",
+    "ant-input": "antd-mini/Input/index"
+  }
+}

@@ -1,0 +1,6 @@
+/node_modules/
+/cloud/
+/miniprogram/node_modules/
+/.idea/
+/miniprogram/.DS_Store
+/miniprogram_npm/
