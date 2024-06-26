@@ -14,6 +14,14 @@ const formatNumber = n => {
   return n[1] ? n : `0${n}`
 }
 
+function resolveEventValue(event) {
+  if (typeof event.detail !== 'undefined') {
+      return event.detail;
+  }
+  return event;
+}
+
 module.exports = {
-  formatTime
+  formatTime,
+  resolveEventValue
 }

@@ -6,7 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    configs:{
+      version: "v1.0.1"
+    }
   },
 
   /**
@@ -80,6 +82,11 @@ Page({
     // 展示关于我们的具体实现
     wx.navigateTo({
       url: '/pages/settings/about-us/about-us'
+    });
+  },
+  onClientVersion(){
+    wx.showToast({
+      title: this.data.configs.version,
     });
   }
 })

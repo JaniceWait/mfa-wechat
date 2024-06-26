@@ -25,6 +25,10 @@ Page({
       {
         text: '输入激活码添加',
         key: 'input',
+      },
+      {
+        text: '导入',
+        key: 'import',
       }
     ],
     cardInfos: [],
@@ -34,17 +38,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-
+    wx.showLoading({
+      title: '数据处理中...',
+    })
+    
     await this.loadPageCardData();
     // 加载页面
     let formateds = FormatedUtils.convertFormatedMFAInfos(this.data.mfaInfos);
     this.data.formateds = formateds;
     this.refreshCardInfos();
-
     // 开始定时器，每隔1000毫秒（1秒）执行一次tick函数
     const timerId = setInterval(this.refreshCardInfos.bind(this), 1000);
     // 将定时器的 ID 保存到数据中
     this.data.refreshCardInfosTimerId = timerId;
+    wx.hideLoading()
   },async loadPageCardData(){
     let localRes = LocalStroe.readByLocal();
     if (localRes.readSuccess){
@@ -75,6 +82,23 @@ Page({
           let mfaInfo = OTPAuthUtils.buildMfaInfoByAddInfo(data);
           console.log(mfaInfo);
           that.addMFAInfo(mfaInfo);
+        }
+      }
+    })
+  },
+  addMFAByImport() {
+    let that = this;
+    wx.navigateTo({
+      url: '/pages/import/import',
+      events: {
+        // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
+        improtData: function (otpauthURLs) {
+          for (let i = 0 ; i < otpauthURLs.length; i++){
+            let otpauthURL = otpauthURLs[i]
+            console.log(otpauthURL,"otpauthURL====")
+            let mfaInfo = OTPAuthUtils.buildMfaInfoByUrl(otpauthURL);
+            that.addMFAInfo(mfaInfo);
+          }
         }
       }
     })
@@ -122,6 +146,9 @@ Page({
       success: (res) => {
         console.log('扫码成功', res);
         const curOtp = res.result;
+        if(curOtp.indexOf("otpauth:") == -1){
+          return
+        }
         let mfaInfo = OTPAuthUtils.buildMfaInfoByUrl(curOtp);
         console.log(mfaInfo)
         that.addMFAInfo(mfaInfo);
@@ -141,6 +168,11 @@ Page({
     }
     if (clickItem.key === 'input') {
       this.addMFAByInput()
+      return;
+    }
+    
+    if (clickItem.key === 'import') {
+      this.addMFAByImport()
       return;
     }
   },
@@ -200,6 +232,12 @@ Page({
       return openId;
     }
   },
+  handleLink(){
+    wx.navigateTo({
+      url: '/pages/settings/feature-introduction/feature-introduction'
+    });
+  }
+  ,
   async store() {
     // 本地存储
     LocalStroe.storeToLocal(this.data.mfaInfos);

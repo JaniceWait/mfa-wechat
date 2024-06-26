@@ -4,7 +4,8 @@
     "pages/setting/setting",
     "pages/addMFA/addMFA",
     "pages/settings/about-us/about-us",
-    "pages/settings/feature-introduction/feature-introduction"
+    "pages/settings/feature-introduction/feature-introduction",
+    "pages/import/import"
   ],
   "window": {
     "navigationBarTextStyle": "black",

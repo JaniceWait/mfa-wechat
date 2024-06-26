@@ -1,6 +1,12 @@
 <view class="container">
     <view class="content">
       <view class="section">
+        <view class="title">自动同步云端</view>
+        <view class="description">
+          自动同步云端，迁移设备登录微信，数据永不丢失
+        </view>
+      </view>
+      <view class="section">
         <view class="title">多种激活方式</view>
         <view class="description">
           二维码扫码激活、文本激活码激活

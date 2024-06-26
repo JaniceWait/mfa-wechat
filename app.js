@@ -1,6 +1,7 @@
 // app.js
 App({
   async onLaunch() {
+    console.log(12344)
 
   
   },

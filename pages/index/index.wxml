@@ -1,8 +1,9 @@
 <view>
     <ant-notice
-    bind:tap="handleClose"
-    mode="closeable">
-    欢迎使用在线MFA验证器！
+    bind:tap="handleLink"
+    enableMarquee="{{ true }}"
+    mode="link">
+    欢迎使用在线MFA验证器！数据自动同步云端,永不丢失！
   </ant-notice>
   <view class="pb">
     <view class="top-container">
@@ -24,7 +25,7 @@
       type="AddCircleOutline" />
     </view>
     <view wx:if="{{cardInfos.length}}">
-      <card wx:for="{{ cardInfos }}" code="{{item.code}}" title="{{item.title}}" progress="{{item.progress}}" index = "{{index}}" bind:editremark="editRemark" bind:deleteitem="deleteItem"/>
+      <card wx:for="{{ cardInfos }}" code="{{item.code}}" title="{{item.title}}" wx:key="index" progress="{{item.progress}}" index = "{{index}}" bind:editremark="editRemark" bind:deleteitem="deleteItem"/>
     </view>
     <view wx:else>
       <empty message="暂无数据"/>
