@@ -15,8 +15,8 @@
 
 ### 线上体验
 #### 微信
-![体验二维码](/images/img_2.png)
+![体验二维码](/images/img_wechat.jpg)
 #### 支付宝
-![体验二维码支付宝](/images/img_2.png)
+![体验二维码支付宝](/images/img_alipay.jpg)
 
 
