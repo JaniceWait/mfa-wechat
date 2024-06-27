@@ -70,6 +70,7 @@ Page({
     },
     submitByImportRef(){
       let otpauthText = this.input.getValue();
+      this.input.update('')
       let otpauthURLs = otpauthText.trim().split('\n').filter(Boolean);
       const eventChannel = this.getOpenerEventChannel()
       eventChannel.emit('improtData', otpauthURLs);
