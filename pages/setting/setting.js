@@ -1,5 +1,7 @@
 // pages/setting/setting.js
 let app = getApp()
+const {showToast} = require("../../utils/toast.util");
+
 Page({
 
   /**
@@ -68,9 +70,8 @@ Page({
   },
   onSyncData(){
     app.globalData.syncStatus = true
-    wx.showToast({
-      title: "数据已经同步",
-    });
+    showToast('数据已经同步');
+
   },
   showFeatureIntroduction() {
     // 展示功能介绍的具体实现

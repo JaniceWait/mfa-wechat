@@ -2,3 +2,20 @@
 textarea {
   min-height: 100px;
 }
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* 将内容顶部对齐 */
+  flex:1
+}
+.import-container {
+  display: grid;
+  grid-template-rows: 1fr auto; /* 第一行占据剩余空间，第二行自适应高度 */
+  height: 85vh; /* 使容器高度占满整个视口 */
+  padding: 0rpx 0 200rpx;
+}
+
+
+textarea {
+    min-height: 300px;
+}

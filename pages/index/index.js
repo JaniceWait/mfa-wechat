@@ -5,6 +5,7 @@ const OTPAuthUtils = require("../../utils/otpauth.util.js");
 const LocalStroe = require("../../utils/local.store.js");
 const CloudStroe = require("../../utils/cloud.store.js");
 const Login = require("../../utils/login.util");
+const {showToast} = require("../../utils/toast.util");
 
 let app = getApp()
 
@@ -27,12 +28,11 @@ Page({
         key: 'input',
       },
       {
-        text: '导入',
+        text: '批量导入',
         key: 'import',
       }
     ],
-    cardInfos: [],
-    basicShow: false,
+    cardInfos: []
   },
   /**
    * 生命周期函数--监听页面加载
@@ -117,17 +117,7 @@ Page({
     // 存储到远端
     this.refreshCardInfos();
     // 提示添加成功
-    wx.showToast({
-      type: 'success',
-      title: '添加成功',
-      duration: 2000,
-      success: () => {
-        // go back to INDEX page and refresh
-        this.setData({
-          basicShow: false
-        })
-      },
-    });
+    showToast('添加成功');
   },
   refreshCardInfos() {
     let formateds = this.data.formateds;

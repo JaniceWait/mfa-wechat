@@ -1,14 +1,17 @@
 <!--pages/import/import.wxml-->
-<ant-container>
-  <ant-textarea placeholder="请输入内容" autoHeight bind:ref="handleRef" bind:change="onChange" />
+<view class=".import-container">
+
+<ant-container style="margin-top:0px;" class="content">
+  <ant-textarea placeholder="请输入内容" maxlength="2000" autoHeight bind:ref="handleRef" bind:change="onChange" />
   <view>请按照如下格式进行导入,通过换行区分秘钥:</view>
   <view>otpauth://totp/备注1?secret=秘钥1&issuer=</view>
   <view>otpauth://totp/备注2?secret=秘钥2&issuer=</view>
 </ant-container>
-<ant-container>
+<ant-container style="align-self: end;" >
   <ant-button className="list"
   type="primary"
   bind:tap="submitByImportRef">
     导入
   </ant-button>
 </ant-container>
+</view>

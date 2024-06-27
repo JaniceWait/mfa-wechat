@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@alipay/faas-web-sdk": "^1.1.21",
-    "antd-mini": "^2.34.0",
+    "antd-mini": "^2.34.1",
     "otpauth": "^8.0.3"
   }
 }

@@ -1,5 +1,6 @@
 // pages/import/import.js
 const {resolveEventValue} = require("../../utils/util");
+const {showToast} = require("../../utils/toast.util");
 
 Page({
 
@@ -64,12 +65,18 @@ Page({
    */
   onShareAppMessage() {
 
-  },
+  }
+  ,
     handleRef(input) {
         this.input = resolveEventValue(input);
     },
     submitByImportRef(){
       let otpauthText = this.input.getValue();
+      console.log(otpauthText)
+      if (!otpauthText){
+        this.showToast("请输入内容")
+        return
+      }
       this.input.update('')
       let otpauthURLs = otpauthText.trim().split('\n').filter(Boolean);
       const eventChannel = this.getOpenerEventChannel()
