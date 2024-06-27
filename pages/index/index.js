@@ -6,6 +6,9 @@ const LocalStroe = require("../../utils/local.store.js");
 const CloudStroe = require("../../utils/cloud.store.js");
 const Login = require("../../utils/login.util");
 const {showToast} = require("../../utils/toast.util");
+const Loading = require("../../utils/loading.util");
+const Scan = require("../../utils/scancode.util");
+const Route = require("../../utils/route.util");
 
 let app = getApp()
 
@@ -38,9 +41,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    wx.showLoading({
-      title: '数据处理中...',
-    })
+    Loading.showLoading('数据处理中...')
     
     await this.loadPageCardData();
     // 加载页面
@@ -51,7 +52,7 @@ Page({
     const timerId = setInterval(this.refreshCardInfos.bind(this), 1000);
     // 将定时器的 ID 保存到数据中
     this.data.refreshCardInfosTimerId = timerId;
-    wx.hideLoading()
+    Loading.hideLoading()
   },async loadPageCardData(){
     let localRes = LocalStroe.readByLocal();
     if (localRes.readSuccess){
@@ -88,7 +89,8 @@ Page({
   },
   addMFAByImport() {
     let that = this;
-    wx.navigateTo({
+
+    Route.navigateTo({
       url: '/pages/import/import',
       events: {
         // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
@@ -131,9 +133,8 @@ Page({
   addMFAByScanCode() {
     // 从网络上读取数据  并保存到本地文件中
     const that = this; // 保存页面实例的引用  
-    wx.scanCode({
-      scanType: 'qrCode',
-      success: (res) => {
+    Scan.scanCode({
+      success:(res) => {
         console.log('扫码成功', res);
         const curOtp = res.result;
         if(curOtp.indexOf("otpauth:") == -1){
@@ -142,13 +143,12 @@ Page({
         let mfaInfo = OTPAuthUtils.buildMfaInfoByUrl(curOtp);
         console.log(mfaInfo)
         that.addMFAInfo(mfaInfo);
-
       },
       fail: (res) => {
         console.log('扫码失败', res);
         // 处理扫码失败的逻辑
       }
-    });
+    })
   },
   handleAction(item, index, e) {
     const [clickItem] = item.detail;
@@ -223,7 +223,7 @@ Page({
     }
   },
   handleLink(){
-    wx.navigateTo({
+    Route.navigateTo({
       url: '/pages/settings/feature-introduction/feature-introduction'
     });
   }

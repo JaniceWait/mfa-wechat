@@ -1,6 +1,7 @@
 // pages/setting/setting.js
 let app = getApp()
 const {showToast} = require("../../utils/toast.util");
+const Route = require("../../utils/route.util");
 
 Page({
 
@@ -75,19 +76,17 @@ Page({
   },
   showFeatureIntroduction() {
     // 展示功能介绍的具体实现
-    wx.navigateTo({
+    Route.navigateTo({
       url: '/pages/settings/feature-introduction/feature-introduction'
     });
   },
   showAboutUs() {
     // 展示关于我们的具体实现
-    wx.navigateTo({
+    Route.navigateTo({
       url: '/pages/settings/about-us/about-us'
     });
   },
   onClientVersion(){
-    wx.showToast({
-      title: this.data.configs.version,
-    });
+    showToast(this.data.configs.version);
   }
 })
