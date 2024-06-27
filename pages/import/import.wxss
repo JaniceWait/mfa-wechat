@@ -1,0 +1,4 @@
+/* pages/import/import.wxss */
+textarea {
+  min-height: 100px;
+}

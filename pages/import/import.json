@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "导入",
+  "usingComponents": {
+    "ant-textarea": "antd-mini/Input/Textarea/index",
+    "ant-button": "antd-mini/Button/index",
+    "ant-container": "antd-mini/Container/index"
+  }
+}
