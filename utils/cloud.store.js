@@ -82,13 +82,22 @@ async function readByCloud(openId) {
         data: []
       };
     }
-    console.log(res,"cloud-res")
     let mfaInfos = res?.result?.mfaInfos;
-    storeToLocal(mfaInfos);
-    return {
-      readSuccess,
-      data: mfaInfos
-    };
+    if (mfaInfos){
+      storeToLocal(mfaInfos);
+      return {
+        readSuccess,
+        data: mfaInfos
+      };
+    }else{
+      // 线上为空也得保存 保障线上线下一致
+      storeToLocal([]);
+      return {
+        readSuccess:false,
+        data: []
+      };
+    }
+
   } catch (e) {
     console.error(e)
     readSuccess = false;

@@ -16,11 +16,7 @@ let app = getApp()
 Page({
   data: {
     visible: false,
-    mfaInfos: [{
-      title: "GitHub:baiyang0910",
-      joinTime: "2024/06/22 18:32:45",
-      url: "otpauth://totp/GitHub:baiyang0910?secret=AMTTPHN3YRPRWJFZ&issuer=GitHub"
-    }],
+    mfaInfos: [],
     formateds: [],
     actions: [{
         text: '扫描二维码添加',
@@ -56,7 +52,6 @@ Page({
   },async loadPageCardData(){
     let localRes = LocalStroe.readByLocal();
     if (localRes.readSuccess){
-      console.log(localRes)
       this.data.mfaInfos = localRes.data;
     }else{
       this.data.mfaInfos = await this.loadCloudData()
@@ -81,7 +76,6 @@ Page({
         // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
         saveData: function (data) {
           let mfaInfo = OTPAuthUtils.buildMfaInfoByAddInfo(data);
-          console.log(mfaInfo);
           that.addMFAInfo(mfaInfo);
         }
       }
@@ -97,7 +91,6 @@ Page({
         improtData: function (otpauthURLs) {
           for (let i = 0 ; i < otpauthURLs.length; i++){
             let otpauthURL = otpauthURLs[i]
-            console.log(otpauthURL,"otpauthURL====")
             let mfaInfo = OTPAuthUtils.buildMfaInfoByUrl(otpauthURL);
             that.addMFAInfo(mfaInfo);
           }
@@ -107,6 +100,9 @@ Page({
   },
   addMFAInfo(mfaInfo) {
     // 保存原始信息到当前页面
+    console.log(this.data.mfaInfos)
+    console.log(this.data)
+
     this.data.mfaInfos.push(mfaInfo)
 
     //存档
@@ -132,7 +128,6 @@ Page({
   },
   addMFAByScanCode() {
     // 从网络上读取数据  并保存到本地文件中
-    const that = this; // 保存页面实例的引用  
     Scan.scanCode({
       success:(res) => {
         console.log('扫码成功', res);
@@ -142,7 +137,7 @@ Page({
         }
         let mfaInfo = OTPAuthUtils.buildMfaInfoByUrl(curOtp);
         console.log(mfaInfo)
-        that.addMFAInfo(mfaInfo);
+        this.addMFAInfo(mfaInfo);
       },
       fail: (res) => {
         console.log('扫码失败', res);
